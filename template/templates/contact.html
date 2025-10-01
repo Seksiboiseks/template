@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Template site - Contact</title>
+        <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet"/>
+    </head>
+    <body>
+        <div>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('index') }}#aboutus">About us</a></li>
+                    <li><a href="{{ url_for('index') }}#projects">Projects</a></li>
+                    <li><a href="{{ url_for('products') }}">Products</a></li>
+                    <li><a href="{{ url_for('reviews') }}">Reviews</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                </ul>
+            </nav>
+            
+            <header>
+                <h1>Contact Us</h1>
+                <p>Feel free to reach out to us for reservations, bookings, enquiries and other important details</p>
+            </header>
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <div class="flash-message flash-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            
+            <hr>
+            
+            <section class="contact-form">
+                <h2>Get in Touch</h2>
+                <form action="{{ url_for('contact') }}" method="post">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    
+                    <label for="phone">Phone Number (Optional):</label>
+                    <input type="tel" id="phone" name="phone">
+                    
+                    <label for="purpose">Purpose of Contact:</label>
+                    <select id="purpose" name="purpose" required>
+                        <option value="">Select a reason...</option>
+                        <option value="general">General Inquiry</option>
+                        <option value="booking">Booking/Reservation</option>
+                        <option value="feedback">Feedback</option>
+                        <option value="support">Technical Support</option>
+                        <option value="business">Business Partnership</option>
+                        <option value="other">Other</option>
+                    </select>
+                    
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="6" cols="50" placeholder="Please provide details about your inquiry..." required></textarea>
+                    
+                    <input type="submit" value="Send Message">
+                </form>
+            </section>
+            
+            <hr>
+            
+            <section class="contact-info">
+                <h2>Other Ways to Reach Us</h2>
+                <article class="contact-methods">
+                    <h3>Phone</h3>
+                    <p><a href="tel:+260962010236">+260 96 201 0236</a></p>
+                    
+                    <h3>Email</h3>
+                    <p><a href="mailto:sekwila.mumba77@gmail.com">sekwila.mumba77@gmail.com</a></p>
+                    
+                    <h3>Location</h3>
+                    <p>Lusaka, Zambia</p>
+                    
+                    <h3>Business Hours</h3>
+                    <p>Monday - Sunday: 08:00 to 23:00</p>
+                </article>
+            </section>
+            
+            <hr class="bottom-line">
+            <section class="details">
+                <article>
+                    <img src="" alt="company/brand logo">
+                    <h2>Template bottom</h2>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}#aboutus">About us</a></li>
+                        <li><a href="{{ url_for('index') }}#projects">Projects</a></li>
+                        <li><a href="{{ url_for('products') }}">Products</a></li>
+                        <li><a href="{{ url_for('reviews') }}">Reviews</a></li>
+                        <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                    </ul>
+                </article>
+                <article>
+                    <h2>Contact</h2>
+                    <a href="tel:+260962010236">+260962010236</a>
+                    <a href="mailto:sekwila.mumba77@gmail.com">info@gmail.com</a>
+                    <h2>Stay Connected</h2>
+                    <a href="https://instagram.com"><img src="" alt="Instagram"></a>
+                </article>
+                <article>
+                    <h2>Working hours</h2>
+                    <p>08:00 to 23:00</p>
+                    <br>
+                    <p>Lusaka, Zambia</p>
+                </article>
+            </section>
+            <hr class="bottomline">
+            <footer>
+                <p>established 0000</p>
+            </footer>
+        </div>
+        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    </body>
+</html>

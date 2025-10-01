@@ -1,0 +1,100 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Template site - Products</title>
+        <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet"/>
+    </head>
+    <body>
+        <div>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('index') }}#aboutus">About us</a></li>
+                    <li><a href="{{ url_for('index') }}#projects">Projects</a></li>
+                    <li><a href="{{ url_for('products') }}">Products</a></li>
+                    <li><a href="{{ url_for('reviews') }}">Reviews</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                </ul>
+            </nav>
+            
+            <header>
+                <h1>This is where you'd display your products</h1>
+                <p>And give descriptions and the price to customers</p>
+            </header>
+            
+            <hr>
+            <img src="" alt="A really quality product">
+            <section class="phones">
+                <article class="product">
+                    <h2 class="service">Smartphones</h2>
+                    <p>Smartphones from this site are the best smart phones you'll ever use and and literally change your life</p>
+                    <h3>iPhone 16: $700</h3>
+                    <p>Apple's latest phone if you have previous experience with apple you'll probably know if you want it or not</p>
+                    <h3>Samsung Galaxy S24: $700</h3>
+                    <p>Phone with the camera so good you can actually zoom into space and see the galaxy</p>
+                    <h3>Google Pixel: $700</h3>
+                    <p>If apple were an android based company this is what it'd probably be like</p>
+                </article>
+            </section>
+            <hr>
+            <section class="food">
+                <article class="product">
+                    <h2 class="service">Fast Food</h2>
+                    <p>Best food you'll ever taste in your life. Once you get a bite of this you'll probably do a backflip or something</p>
+                    <h3>Chicken and fries: $10</h3>
+                    <p>this chicken and fries combo is so good that it literally changes your life once eaten</p>
+                    <h3>Pizza: $15</h3>
+                    <p>classic pizza and we always put pineapple to piss off the Italians</p>
+                    <h3>Air burgers: $1</h3>
+                    <p>Sometimes food is expensive so we'll allow you to dream about eating something in our establishment for only a dollar</p>
+                </article>
+            </section>
+            <section class="wash">
+                <article class="product">
+                    <h2 class="service">Car Wash</h2>
+                    <p>We'll wash your car so good it'll lose about a 100km mileage and turn into a transformer after a week</p>
+                    <h3>SUVs: $ 100</h3>
+                    <p>Range Rovers, GLEs and Prados bring your cars and we'll make them look 10 years younger</p>
+                    <h3>4x4 or Pick up Trucks: $20</h3>
+                    <p>Hilux, Raptors and more we'll make your machine look good enough to be in the showroom once again</p>
+                    <h3>Coupes: $ 50</h3>
+                    <p>BMWs, Mercedes and others. Make sure to control everything well otherwise it's crazy</p>
+                </article>
+            </section>
+            <section class="details">
+                <article>
+                    <img src="" alt="company/brand logo">
+                    <h2>Template bottom</h2>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}#aboutus">About us</a></li>
+                        <li><a href="{{ url_for('index') }}#projects">Projects</a></li>
+                        <li><a href="{{ url_for('products') }}">Products</a></li>
+                        <li><a href="{{ url_for('reviews') }}">Reviews</a></li>
+                        <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                    </ul>
+                </article>
+                <article>
+                    <h2>Contact</h2>
+                    <a href="tel:+260962010236">+260962010236</a>
+                    <a href="mailto:sekwila.mumba77@gmail.com">info@gmail.com</a>
+                    <h2>Stay Connected</h2>
+                    <a href="https://instagram.com"><img src="" alt="Instagram"></a>
+                </article>
+                <article>
+                    <h2>Working hours</h2>
+                    <p>08:00 to 23:00</p>
+                    <br>
+                    <p>Lusaka, Zambia</p>
+                </article>
+            </section>
+            <hr class="bottomline">
+            <footer>
+                <p>established 0000</p>
+            </footer>
+        </div>
+        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    </body>
+</html>

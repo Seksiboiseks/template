@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Template site - Reviews</title>
+        <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet"/>
+    </head>
+    <body>
+        <div>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('index') }}#aboutus">About us</a></li>
+                    <li><a href="{{ url_for('index') }}#projects">Projects</a></li>
+                    <li><a href="{{ url_for('products') }}">Products</a></li>
+                    <li><a href="{{ url_for('reviews') }}">Reviews</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                </ul>
+            </nav>
+            
+            <header>
+                <h1>Reviews Page</h1>
+                <p>Hear testimonies about us from our customers on our website</p>
+            </header>
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <div class="flash-message flash-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            
+            <section>
+                <h2>User Feedback</h2>
+                <img src="" alt="Happy customers">
+            </section>
+            <section class="written">
+                <article class="review">
+                    <h3>The travel girl</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis aspernatur aut reiciendis saepe, quia doloribus voluptate sint rerum voluptatem, dolor accusantium? Eius voluptates nulla fuga atque repudiandae natus laboriosam quo.</p>
+                </article>    
+                <article class="review">
+                    <h3>Sports dude</h3>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur, cupiditate. Repudiandae reprehenderit eligendi eum voluptatum corrupti tempore architecto impedit dolorum incidunt animi voluptatem, doloribus laborum, deserunt, rerum est error? Quos.</p>
+                </article>
+                <article class="review">
+                    <h3>Youtube family</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio, illum corrupti sed, unde atque voluptates, beatae vitae reiciendis aspernatur placeat explicabo sit suscipit cupiditate ad eos! Laboriosam assumenda accusamus cumque.</p>
+                </article>                
+            </section>
+            <hr>
+            <section class="visual">
+                <h2>Visual reviews</h2>
+                <p>Here you will see the images and video reviews from our users</p>
+                <article class="image">
+                    <img src="" alt="People enjoying themselves">
+                </article>
+                <article class="image">
+                    <img src="" alt="Live musical performance">
+                </article>
+                <article class="video">
+                    <iframe src="" title="Customer Review Video">
+                    </iframe>
+                </article>
+            </section>
+            <hr>
+            <section class="feedback">
+                <h2>Feel Inspired to leave your own feedback?</h2>
+                <p>Feel free to do so in the form below:</p>
+                <form action="{{ url_for('submit_review') }}" method="post">
+                    <label for="reviewer-name">Your Name:</label>
+                    <input type="text" id="reviewer-name" name="reviewer-name" required>
+                    
+                    <label for="rating">Rating:</label>
+                    <select id="rating" name="rating">
+                        <option value="5">5 Stars - Excellent</option>
+                        <option value="4">4 Stars - Very Good</option>
+                        <option value="3">3 Stars - Good</option>
+                        <option value="2">2 Stars - Fair</option>
+                        <option value="1">1 Star - Poor</option>
+                    </select>
+                    
+                    <label for="review-text">Your Review:</label>
+                    <textarea id="review-text" name="review-text" rows="4" cols="50" placeholder="Share your experience..." required></textarea>
+                    
+                    <input type="submit" value="Submit Review">
+                </form>
+            </section>
+            <hr class="bottom-line">
+            <section class="details">
+                <article>
+                    <img src="" alt="company/brand logo">
+                    <h2>Template bottom</h2>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}#aboutus">About us</a></li>
+                        <li><a href="{{ url_for('index') }}#projects">Projects</a></li>
+                        <li><a href="{{ url_for('products') }}">Products</a></li>
+                        <li><a href="{{ url_for('reviews') }}">Reviews</a></li>
+                        <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                    </ul>
+                </article>
+                <article>
+                    <h2>Contact</h2>
+                    <a href="tel:+260962010236">+260962010236</a>
+                    <a href="mailto:sekwila.mumba77@gmail.com">info@gmail.com</a>
+                    <h2>Stay Connected</h2>
+                    <a href="https://instagram.com"><img src="" alt="Instagram"></a>
+                </article>
+                <article>
+                    <h2>Working hours</h2>
+                    <p>08:00 to 23:00</p>
+                    <br>
+                    <p>Lusaka, Zambia</p>
+                </article>
+            </section>
+            <hr class="bottomline">
+            <footer>
+                <p>established 0000</p>
+            </footer>
+        </div>
+        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    </body>
+</html>

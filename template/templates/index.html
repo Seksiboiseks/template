@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Template site</title>
+        <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet"/>
+    </head>
+    <body>
+        <div>
+            <header class="landingpage">
+                <h1>Sek's site</h1>
+                <p>This is a template description of a template site. Created by Sekwila Mumba.</p>
+            </header>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#aboutus">About us</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="{{ url_for('products') }}">Products</a></li>
+                    <li><a href="{{ url_for('reviews') }}">Reviews</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                </ul>
+            </nav>
+            <br>
+
+            <section id="home">
+                <article class="text">
+                    <h2>Sek's Home</h2>
+                    <p>So this is my site and feel free to explore through the stuff and interact</p>
+                </article>
+            </section>
+            <br>
+
+            <section id="aboutus">
+                <article class="text">
+                    <h2>about me</h2>
+                    <p>It's me the one and only. Footballer, Football analyst(Founder of Touchline analytics), Football writer, web developer, software dev and anything else I put my mind to.</p>
+                    <img src="https://i.imgur.com/aLrOATE.jpg" alt="image of the place or something to show the vibe of the place">
+                </article>
+                <br>
+            </section>
+            <section id="projects">
+                <article class="text">
+                    <h2>Football Analysis</h2>
+                    <p>Here is where my passion for the game materializes off the pitch. Top quality analysis factoring in both subjective and data based analysis through python and it's various libraries. My club world cup analysis on how chelsea were able to dominate PSG in the final was an amazing piece and should you be interested the link is</p>
+                    <a href="https://the-footballanalyst.com/tactical-triumph-chelseas-masterclass-against-psg/">Here</a>
+                    <p>If  the tactical details aren't really what your interested in and would prefer to check out the football journalism taking a look at AC Milan's ownership situation and how boardroom decisions affect on field performances. It got almost 150K views, over 200 reposts, over 600 likes and almost 50 bookmarks within 24 hours!</p>
+                    <a href="https://breakingthelines.com/investigation-piece/ac-milan-from-glory-to-decline-what-went-wrong/">Click here if you're interested in the piece</a>
+                    <img src="https://i.imgur.com/iSGdHEp.jpg" alt="Project screenshot or demo">
+                </article>
+                <br>
+                <article class="text">
+                    <h2>Web Development</h2>
+                    <p>Creating for you personalized websites for your personal(from personal blogs) to business use and everything inbetween. With modern, sleek and interactive UIs that'll help whatever you need to do on the internet stand out!</p>
+                    <a href="index.html">This is a sample site</a>
+                    <img src="https://i.imgur.com/inrcWJ3.png" alt="Project image or portfolio piece">
+                </article>
+            </section>
+            <hr class="bottom-line">
+            <section class="details">
+                <article>
+                    <img src="" alt="company/brand logo">
+                    <h2>Template bottom</h2>
+                    <ul>
+                        <li><a href="#aboutus">About us</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="{{ url_for('products') }}">Products</a></li>
+                        <li><a href="{{ url_for('reviews') }}">Reviews</a></li>
+                        <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                    </ul>
+                </article>
+                <article>
+                    <h2>Contact</h2>
+                    <a href="tel:+260962010236">+260962010236</a>
+                    <a href="mailto:sekwila.mumba77@gmail.com">info@gmail.com</a>
+                    <h2>Stay Connected</h2>
+                    <a href="https://www.instagram.com/s3kwila/"><img src="https://i.imgur.com/3inaAYi.jpg" alt="Instagram"></a>
+                    <a href="https://x.com/TL_analytics"><img src="https://i.imgur.com/NXR6Qke.jpg" alt="Twitter"></a>
+                </article>
+                <article>
+                    <h2>Working hours</h2>
+                    <p>08:00 to 23:00</p>
+                    <br>
+                    <p>Lusaka, Zambia</p>
+                </article>
+            </section>
+            <hr class="bottomline">
+            <footer>
+                <p>established 0000</p>
+            </footer>
+        </div>
+        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    </body>
+</html>
