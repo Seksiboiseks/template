@@ -244,6 +244,32 @@ img {
     margin: 1rem 0;
 }
 
+/* Control image sizes */
+section img {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 1rem auto;
+}
+
+/* Smaller images in footer/social media sections */
+.details img {
+    max-width: 50px;
+    width: 100%;
+}
+
+/* Specific control for project images */
+#projects img {
+    max-width: 600px;
+    width: 100%;
+}
+
+/* About section image */
+#aboutus img {
+    max-width: 400px;
+    width: 100%;
+}
 /* HR Styles */
 hr {
     border: none;
