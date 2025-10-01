@@ -1,6 +1,8 @@
 // Portfolio Interactive JavaScript
 
 // Wait for DOM to load
+// Portfolio Interactive JavaScript
+
 document.addEventListener('DOMContentLoaded', function() {
     
     // ==================== STICKY NAVIGATION ====================
@@ -10,19 +12,15 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleNavOnScroll() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
-        // Add/remove scrolled class for styling
         if (scrollTop > 50) {
             nav.classList.add('scrolled');
         } else {
             nav.classList.remove('scrolled');
         }
         
-        // Hide/show nav on scroll direction
         if (scrollTop > lastScrollTop && scrollTop > 100) {
-            // Scrolling down
             nav.style.transform = 'translateY(-100%)';
         } else {
-            // Scrolling up
             nav.style.transform = 'translateY(0)';
         }
         
@@ -30,15 +28,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ==================== SCROLL ANIMATIONS ====================
-    
-    // Create Intersection Observer for animations
     const observerOptions = {
         root: null,
         rootMargin: '0px 0px -100px 0px',
         threshold: 0.1
     };
     
-    // Heading slide-in animation
+    // Heading slide-in animation (KEEP THIS)
     function createHeadingObserver() {
         const headingObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -48,7 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }, observerOptions);
         
-        // Observe all headings
         const headings = document.querySelectorAll('h1, h2, h3');
         headings.forEach(heading => {
             heading.classList.add('slide-ready');
@@ -56,50 +51,40 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Typewriter effect for paragraphs
-    function createTypewriterObserver() {
-        const typewriterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !entry.target.classList.contains('typed')) {
-                    startTypewriter(entry.target);
-                }
-            });
-        }, observerOptions);
+    // ==================== HAMBURGER MENU ====================
+    function initHamburgerMenu() {
+        const navUl = nav.querySelector('ul');
         
-        // Observe all paragraphs
-        const paragraphs = document.querySelectorAll('p');
-        paragraphs.forEach(p => {
-            // Store original text
-            p.dataset.originalText = p.textContent;
-            p.textContent = ''; // Clear text initially
-            p.classList.add('typewriter-ready');
-            typewriterObserver.observe(p);
+        const menuToggle = document.createElement('button');
+        menuToggle.className = 'menu-toggle';
+        menuToggle.setAttribute('aria-label', 'Toggle menu');
+        menuToggle.innerHTML = `
+            <span></span>
+            <span></span>
+            <span></span>
+        `;
+        
+        nav.insertBefore(menuToggle, navUl);
+        
+        menuToggle.addEventListener('click', () => {
+            navUl.classList.toggle('active');
+            menuToggle.classList.toggle('active');
         });
-    }
-    
-    // Typewriter animation function
-    function startTypewriter(element) {
-        const text = element.dataset.originalText;
-        const speed = 30; // Typing speed in milliseconds
-        let i = 0;
         
-        element.classList.add('typed');
-        element.style.borderRight = '2px solid rgb(52, 79, 31)'; // Cursor effect
+        const navLinks = navUl.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navUl.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
         
-        function typeChar() {
-            if (i < text.length) {
-                element.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeChar, speed);
-            } else {
-                // Remove cursor after typing is complete
-                setTimeout(() => {
-                    element.style.borderRight = 'none';
-                }, 500);
+        document.addEventListener('click', (e) => {
+            if (!nav.contains(e.target)) {
+                navUl.classList.remove('active');
+                menuToggle.classList.remove('active');
             }
-        }
-        
-        typeChar();
+        });
     }
     
     // ==================== SMOOTH SCROLLING FOR NAV LINKS ====================
@@ -113,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const targetElement = document.getElementById(targetId);
                 
                 if (targetElement) {
-                    const offsetTop = targetElement.offsetTop - 80; // Account for fixed nav
+                    const offsetTop = targetElement.offsetTop - 80;
                     
                     window.scrollTo({
                         top: offsetTop,
@@ -122,72 +107,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-    }
-    
-    // ==================== FORM ENHANCEMENTS ====================
-    function enhanceForms() {
-        const forms = document.querySelectorAll('form');
-        
-        forms.forEach(form => {
-            // Add floating labels effect
-            const inputs = form.querySelectorAll('input, textarea, select');
-            
-            inputs.forEach(input => {
-                // Add focus effects
-                input.addEventListener('focus', function() {
-                    this.parentElement.classList.add('input-focused');
-                });
-                
-                input.addEventListener('blur', function() {
-                    this.parentElement.classList.remove('input-focused');
-                    if (this.value) {
-                        this.classList.add('has-value');
-                    } else {
-                        this.classList.remove('has-value');
-                    }
-                });
-            });
-            
-            // Form submission feedback
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                showFormFeedback();
-            });
-        });
-    }
-    
-    function showFormFeedback() {
-        // Create success message
-        const successMessage = document.createElement('div');
-        successMessage.textContent = 'Thank you! Your message has been sent.';
-        successMessage.style.cssText = `
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            background-color: rgb(52, 79, 31);
-            color: rgb(250, 234, 177);
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(52, 79, 31, 0.3);
-            transform: translateX(300px);
-            transition: transform 0.3s ease;
-            z-index: 1001;
-        `;
-        
-        document.body.appendChild(successMessage);
-        
-        // Slide in
-        setTimeout(() => {
-            successMessage.style.transform = 'translateX(0)';
-        }, 100);
-        
-        // Slide out and remove
-        setTimeout(() => {
-            successMessage.style.transform = 'translateX(300px)';
-            setTimeout(() => {
-                document.body.removeChild(successMessage);
-            }, 300);
-        }, 3000);
     }
     
     // ==================== SCROLL PROGRESS INDICATOR ====================
@@ -213,12 +132,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ==================== INITIALIZE ALL FEATURES ====================
-    
-    // Add CSS for animations
+    // ==================== ADD CSS FOR ANIMATIONS ====================
     const style = document.createElement('style');
     style.textContent = `
-        /* Navigation transitions */
         nav {
             transition: all 0.3s ease;
         }
@@ -228,7 +144,6 @@ document.addEventListener('DOMContentLoaded', function() {
             box-shadow: 0 2px 20px rgba(52, 79, 31, 0.4);
         }
         
-        /* Heading slide-in animations */
         .slide-ready {
             opacity: 0;
             transform: translateX(-50px);
@@ -240,79 +155,32 @@ document.addEventListener('DOMContentLoaded', function() {
             transform: translateX(0);
         }
         
-        /* Typewriter cursor */
-        .typewriter-ready {
-            min-height: 1.2em;
-        }
-        
-        /* Stagger heading animations */
         h1.slide-ready { transition-delay: 0.1s; }
         h2.slide-ready { transition-delay: 0.2s; }
         h3.slide-ready { transition-delay: 0.3s; }
         
-        /* Enhanced hover effects */
         article:hover {
             transform: translateY(-5px) scale(1.02);
-        }
-        
-        /* Button pulse effect */
-        input[type="submit"]:hover {
-            animation: pulse 0.6s ease;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        /* Loading animation for forms */
-        .loading {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .loading::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(250, 234, 177, 0.4), transparent);
-            animation: loading 1.5s infinite;
-        }
-        
-        @keyframes loading {
-            0% { left: -100%; }
-            100% { left: 100%; }
         }
     `;
     document.head.appendChild(style);
     
-    // Initialize all features
-    handleNavOnScroll(); // Initial call
+    // ==================== INITIALIZE ALL FEATURES ====================
+    handleNavOnScroll();
     window.addEventListener('scroll', handleNavOnScroll);
     
     createHeadingObserver();
-    createTypewriterObserver();
     initSmoothScrolling();
-    enhanceForms();
     createScrollProgress();
+    initHamburgerMenu();
     
-    // Add page load animation
     document.body.style.opacity = '0';
     setTimeout(() => {
         document.body.style.transition = 'opacity 0.5s ease';
         document.body.style.opacity = '1';
     }, 100);
-    
-    console.log('Portfolio animations initialized! 🚀');
 });
 
-// ==================== ADDITIONAL UTILITY FUNCTIONS ====================
-
-// Debounce function for performance
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -325,8 +193,6 @@ function debounce(func, wait) {
     };
 }
 
-// Add resize handler with debounce
 window.addEventListener('resize', debounce(() => {
-    // Recalculate positions if needed
     console.log('Window resized - animations adjusted');
 }, 250));
